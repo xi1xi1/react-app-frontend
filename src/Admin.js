@@ -7,7 +7,8 @@ import UserTable from './components/UserTable';
 import SearchQuestion from './components/SearchQuestion';
 import QuestionTable from './components/QuestionTable';
 import { useState, useCallback } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation,Navigate } from 'react-router-dom';
+
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -166,10 +167,11 @@ const AdminLayout = () => {
             minHeight: 'calc(100vh - 64px - 70px - 48px)'
           }}>
             <Routes>
-              <Route path="/" element={<div>请选择左侧菜单</div>} />
-              <Route path="/user" element={<UserManagementContent />} />
-              <Route path="/question" element={<QuestionManagementContent />} />
-            </Routes>
+          {/* 将根路径重定向到 /user */}
+          <Route path="/" element={<Navigate to="/user" replace />} />
+          <Route path="/user" element={<UserManagementContent />} />
+          <Route path="/question" element={<QuestionManagementContent />} />
+        </Routes>
           </div>
         </Content>
       </Layout>
